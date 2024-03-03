@@ -3,9 +3,9 @@
       int invertida_inteiro(int num) { 
 int invertida_num=0; 
 
-   While (num!=0){ 
-invertida_num= invertida_num*10+n%10; 
-} 
+   While (num!=0);{ 
+invertida_num= invertida_num*10+10; 
+}
    return invertida_num; 
 } 
 
