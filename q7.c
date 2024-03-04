@@ -25,5 +25,4 @@ int main() {
         printf("%d é primo.\n", num);
     else
         printf("%d não é primo.\n", num);
-
     return 0; }
