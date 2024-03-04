@@ -26,5 +26,4 @@ int main() {
     else
         printf("%d não é primo.\n", num);
 
-    return 0;
-}
+    return 0; }
