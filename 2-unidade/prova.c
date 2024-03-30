@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define CAPACIDADE_HASH 5003
+#define CAPACIDADE_HASH 5000
 
 typedef struct Contato {
-    char nome[50];
-    char telefone[20];
-    char email[50];
+    char nome[100];
+    char telefone[100];
+    char email[100];
     struct Contato *prox;
 } Contato;
 
@@ -34,7 +34,7 @@ void inserir_contato(ListaContatos *lista, char *nome, char *telefone, char *ema
 
     Contato *novo_contato = (Contato *)malloc(sizeof(Contato));
     if (novo_contato == NULL) {
-        printf("Erro: memória insuficiente.\n");
+        printf("Erro: memoria insuficiente.\n");
         return;
     }
     strcpy(novo_contato->nome, nome);
@@ -65,7 +65,7 @@ void remover_contato(ListaContatos *lista, char *nome) {
         free(atual);
         printf("Contato removido com sucesso.\n");
     } else {
-        printf("Contato não encontrado.\n");
+        printf("Contato nao encontrado.\n");
     }
 }
 
@@ -78,56 +78,51 @@ void buscar_contato(ListaContatos *lista, char *nome) {
     }
 
     if (atual != NULL) {
-        printf("Contato encontrado: %s - %s\n", atual->nome, atual->telefone);
+        printf("Contato encontrado: %s\n %s\n %s\n", atual->nome, atual->telefone, atual->email);
     } else {
-        printf("Contato não encontrado.\n");
+        printf("Contato nao encontrado.\n");
     }
 }
 
 void imprimir_contatos(ListaContatos *lista) {
     printf("Lista de contatos:\n");
-    for (int i = 0; i < CAPACIDADE_HASH; i++) {
+    for (int i = 0; i < CAPACIDADE_HASH ;i++) {
         Contato *atual = lista->tabela[i];
         while (atual != NULL) {
-            printf("%s: %s\n", atual->nome, atual->telefone);
+            printf("%s\n %s\n %s\n \n", atual->nome, atual->telefone, atual->email);
             atual = atual->prox;
         }
     }
 }
 
-void ler_contatos_arquivo(ListaContatos *lista) {
-    FILE *arquivo = fopen("contatos.txt", "r");
-    if (arquivo == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
-        return;
-    }
-
-    char nome[50];
-    char telefone[20];
-    char email[50];
-
-    while (fscanf(arquivo, "%s\n %s\n %s\n", nome, telefone, email) != EOF) {
-        inserir_contato(lista, nome, telefone, email);
-    }
-
-    fclose(arquivo);
-}
-
 int main() {
     ListaContatos lista;
     inicializar_lista(&lista);
-    ler_contatos_arquivo(&lista);
-    imprimir_contatos(&lista);
 
+    FILE *f = fopen("todosOsContatos.txt", "r");
+    char nome[100];
+    char tel[100];
+    char email[100];
+
+    for (int i = 0; i < 10000; i++) {
+        fscanf(f, "Nome: %[A-Z. a-z]\n", nome);
+        fscanf(f, "Telefone: %[(0-9) -0-9]\n", tel);
+        fscanf(f, "Email: %s\n", email);
+        fscanf(f, "\n");
+        inserir_contato(&lista, nome, tel, email);
+    }
+    fclose(f);
+   
     int opcao;
-    char nome[50], telefone[20], email[50];
+
     do {
-        printf("\nOpções:\n");
+        printf("\nMENU:\n");
         printf("1 - Inserir\n");
         printf("2 - Remover\n");
         printf("3 - Buscar\n");
+        printf("4 - Imprimir\n");
         printf("0 - Sair\n");
-        printf("Escolha uma opção: ");
+        printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
 
         switch (opcao) {
@@ -135,10 +130,10 @@ int main() {
                 printf("Digite o nome do contato: ");
                 scanf("%s", nome);
                 printf("Digite o telefone do contato: ");
-                scanf("%s", telefone);
+                scanf("%s", tel);
                 printf("Digite o email do contato: ");
                 scanf("%s", email);
-                inserir_contato(&lista, nome, telefone, email);
+                inserir_contato(&lista, nome, tel, email);
                 break;
             case 2:
                 printf("Digite o nome do contato a ser removido: ");
@@ -150,11 +145,15 @@ int main() {
                 scanf("%s", nome);
                 buscar_contato(&lista, nome);
                 break;
+            case 4:
+                printf("Todos os contatos:\n");
+                imprimir_contatos(&lista);
+                break;
             case 0:
                 printf("Encerrando o programa.\n");
                 break;
             default:
-                printf("Opção inválida. Tente novamente.\n");
+                printf("Opcao invalida. Tente novamente.\n");
         }
     } while (opcao != 0);
 
