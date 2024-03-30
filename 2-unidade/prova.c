@@ -136,12 +136,12 @@ int main() {
                 inserir_contato(&lista, nome, tel, email);
                 break;
             case 2:
-                printf("Digite o nome do contato a ser removido: ");
+                printf("Digite o nome do contato a ser removido:\n");
                 scanf("%s", nome);
                 remover_contato(&lista, nome);
                 break;
             case 3:
-                printf("Digite o nome do contato a ser buscado: ");
+                printf("Digite o nome do contato a ser buscado: \n");
                 scanf("%s", nome);
                 buscar_contato(&lista, nome);
                 break;
