@@ -127,22 +127,22 @@ int main() {
 
         switch (opcao) {
             case 1:
-                printf("Digite o nome do contato: ");
-                scanf("%s", nome);
-                printf("Digite o telefone do contato: ");
-                scanf("%s", tel);
-                printf("Digite o email do contato: ");
-                scanf("%s", email);
+                printf("Digite o nome do contato:\n");
+                scanf("%s", &nome);
+                printf("Digite o telefone do contato:\n");
+                scanf("%s", &tel);
+                printf("Digite o email do contato:\n");
+                scanf("%s", &email);
                 inserir_contato(&lista, nome, tel, email);
                 break;
             case 2:
                 printf("Digite o nome do contato a ser removido:\n");
-                scanf("%s", nome);
+                scanf("%s", &nome);
                 remover_contato(&lista, nome);
                 break;
             case 3:
-                printf("Digite o nome do contato a ser buscado: \n");
-                scanf("%s", nome);
+                printf("Digite o nome do contato a ser buscado:\n");
+                scanf("%s", &nome);
                 buscar_contato(&lista, nome);
                 break;
             case 4:
