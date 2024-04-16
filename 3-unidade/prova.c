@@ -43,9 +43,26 @@ void grafoGraus(int linha, int coluna, int **matriz){
     FILE *arquivograus = fopen("dados_grafos_graus.txt", "w");
 
     for (int i = 0; i < linha; i++){
-        fprintf(arquivograus, "Grau do vertice %d: %d\n", i, aux[i]);
+        fprintf(arquivograus, "Vertice %d: %d\n", i, aux[i]);
     }
     fclose(arquivograus);
+}
+
+void verticeIsolado(int linha, int coluna, int **matriz){
+    int aux1[linha];
+    int aux2[coluna];
+    for (int i = 0; i < linha; i++){
+        aux1[i] = 0;
+        aux2[i] = 0;
+        for (int j = 0; j < coluna; j++){
+            aux1[i] += matriz[i][j];
+            aux2[i] += matriz[j][i];
+        }
+        if (aux1[i] == 0 && aux2[i] == 0){
+                printf("vertice %d - isolado\n");
+            }
+    }
+    printf("nao tem vertice isolado\n");
 }
 
 void verticeSumidouro(int linha, int coluna, int **matriz){
@@ -104,6 +121,18 @@ void primeiroEultimo(int coluna, int **matriz){
     }
 }
 
+void multiplosde5(int linha, int coluna, int **matriz){
+    FILE *arquivo = fopen("dados_grafo_gerador.txt", "w");
+    
+    for (int i = 5; i < linha; i += 5){
+        for (int j = 0; j < coluna; j++){
+            fprintf(arquivo, "%d ", matriz[i][j]);
+        }
+        fprintf(arquivo, "\n");
+    }
+    fclose(arquivo);
+}
+
 int main() {
     int **matriz;
     int linha, coluna;
@@ -137,13 +166,15 @@ int main() {
 
     fclose(arquivo);
     
-    //grafoDirecionado(linha, coluna, matriz);
-    //grafoGraus(linha, coluna, matriz);
-    //verticeSumidouro(linha, coluna, matriz);
-    //verticeFonte(linha, coluna, matriz);
-    //grafoComplemetar(linha, coluna, matriz);
-    //primeiroEultimo(coluna, matriz);
     //imprimeMatriz(linha, coluna, matriz);
+    grafoDirecionado(linha, coluna, matriz);
+    grafoGraus(linha, coluna, matriz);
+    verticeIsolado(linha, coluna, matriz);
+    verticeSumidouro(linha, coluna, matriz);
+    verticeFonte(linha, coluna, matriz);
+    grafoComplemetar(linha, coluna, matriz);
+    primeiroEultimo(coluna, matriz);
+    multiplosde5(linha, coluna, matriz);
 
     for (int i = 0; i < linha; i++) {
         free(matriz[i]);
