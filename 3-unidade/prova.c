@@ -123,9 +123,15 @@ void primeiroEultimo(int coluna, int **matriz){
 
 void multiplosde5(int linha, int coluna, int **matriz){
     FILE *arquivo = fopen("dados_grafo_gerador.txt", "w");
+
+    int cont = 0;
+    for (int i = 0; i < linha; i += 5){
+        cont++;
+    }
+    fprintf(arquivo, "%d %d\n", cont, cont);
     
-    for (int i = 5; i < linha; i += 5){
-        for (int j = 0; j < coluna; j++){
+    for (int i = 0; i <= linha; i += 5){
+        for (int j = 0; j <= coluna; j += 5){
             fprintf(arquivo, "%d ", matriz[i][j]);
         }
         fprintf(arquivo, "\n");
