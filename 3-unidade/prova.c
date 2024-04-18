@@ -59,7 +59,7 @@ void verticeIsolado(int linha, int coluna, int **matriz){
             aux2[i] += matriz[j][i];
         }
         if (aux1[i] == 0 && aux2[i] == 0){
-                printf("vertice %d - isolado\n");
+                printf("vertice %d - isolado\n", i);
             }
     }
     printf("nao tem vertice isolado\n");
@@ -115,9 +115,9 @@ void primeiroEultimo(int coluna, int **matriz){
     int i = 0;
     int j = coluna;
     if(matriz[i][j] == 0){
-        printf("O primeiro e o ultimo, nao estao conectados");
+        printf("O primeiro e o ultimo, nao estao conectados\n");
     } else{
-        printf("O primeiro e o ultimo estao conectados");
+        printf("O primeiro e o ultimo estao conectados\n");
     }
 }
 
