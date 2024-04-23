@@ -100,6 +100,9 @@ void grafoComplemetar(int linha, int coluna, int **matriz){
 
     for (int i = 0; i < linha; i++){
         for (int j = 0; j < coluna; j++){
+            if (i == j){
+                fprintf(arquivo, "%d ", 0);
+            }
             if (matriz[i][j] == 0){
                 fprintf(arquivo, "%d ", 1);
             }else{
@@ -173,14 +176,14 @@ int main() {
     fclose(arquivo);
     
     //imprimeMatriz(linha, coluna, matriz);
-    grafoDirecionado(linha, coluna, matriz);
-    grafoGraus(linha, coluna, matriz);
-    verticeIsolado(linha, coluna, matriz);
-    verticeSumidouro(linha, coluna, matriz);
-    verticeFonte(linha, coluna, matriz);
+    //grafoDirecionado(linha, coluna, matriz);
+    //grafoGraus(linha, coluna, matriz);
+    //verticeIsolado(linha, coluna, matriz);
+    //verticeSumidouro(linha, coluna, matriz);
+    //verticeFonte(linha, coluna, matriz);
     grafoComplemetar(linha, coluna, matriz);
-    primeiroEultimo(coluna, matriz);
-    multiplosde5(linha, coluna, matriz);
+    //primeiroEultimo(coluna, matriz);
+    //multiplosde5(linha, coluna, matriz);
 
     for (int i = 0; i < linha; i++) {
         free(matriz[i]);
