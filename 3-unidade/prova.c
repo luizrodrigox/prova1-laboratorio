@@ -176,14 +176,14 @@ int main() {
     fclose(arquivo);
     
     //imprimeMatriz(linha, coluna, matriz);
-    //grafoDirecionado(linha, coluna, matriz);
-    //grafoGraus(linha, coluna, matriz);
-    //verticeIsolado(linha, coluna, matriz);
-    //verticeSumidouro(linha, coluna, matriz);
-    //verticeFonte(linha, coluna, matriz);
+    grafoDirecionado(linha, coluna, matriz);
+    grafoGraus(linha, coluna, matriz);
+    verticeIsolado(linha, coluna, matriz);
+    verticeSumidouro(linha, coluna, matriz);
+    verticeFonte(linha, coluna, matriz);
     grafoComplemetar(linha, coluna, matriz);
-    //primeiroEultimo(coluna, matriz);
-    //multiplosde5(linha, coluna, matriz);
+    primeiroEultimo(coluna, matriz);
+    multiplosde5(linha, coluna, matriz);
 
     for (int i = 0; i < linha; i++) {
         free(matriz[i]);
